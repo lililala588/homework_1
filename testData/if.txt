@@ -1,0 +1,11 @@
+method[row]	node	parent	height	start.x	start.y	end.x	end.y	content
+ifTest[570]	0	-1	0	571	8	580	9	if-statement@if (i > 0) {
+ifTest[570]	1	0	1	572	12	574	13	then-body@for (int j=0; j < 5; j++) {
+ifTest[570]	2	0	1	576	12	576	16	else-body@i++;
+ifTest[570]	1	0	1	572	12	574	13	for-statement@for (int j=0; j < 5; j++) {
+ifTest[570]	3	1	2	572	25	572	28	for-condition@j < 5
+ifTest[570]	4	1	2	572	29	572	32	for-update@j++
+ifTest[570]	5	0	1	577	12	579	13	for-statement@for (int k=0; k < 5; k++) {
+ifTest[570]	6	5	2	577	24	577	27	for-condition@k < 5
+ifTest[570]	7	5	2	577	28	577	31	for-update@k++
+ifTest[570]	8	-1	0	581	5	581	5	pseudo-return@pseudo-return

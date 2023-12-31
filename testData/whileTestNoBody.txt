@@ -1,0 +1,7 @@
+method[row]     node    parent  height  start.x start.y end.x   end.y   content
+whileTestNoBody[562]    0       -1      0       566     8       568     9       after-branch@while (j++) {
+whileTestNoBody[562]    1       -1      0       569     8       571     9       after-branch@while (k++) {
+whileTestNoBody[562]    2       -1      0       563     8       565     9       while-statement@while (i++) {
+whileTestNoBody[562]    0       -1      0       566     8       568     9       while-statement@while (j++) {
+whileTestNoBody[562]    1       -1      0       569     8       571     9       while-statement@while (k++) {
+whileTestNoBody[562]    3       -1      0       572     5       572     5       pseudo-return@pseudo-return

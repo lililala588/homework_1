@@ -1,0 +1,6 @@
+method[row]     node    parent  height  start.x start.y end.x   end.y   content
+whileTest[552]  0       -1      0       553     8       559     9       while-statement@while (i++) {
+whileTest[552]  1       0       1       554     12      554     16      while-body@i++;
+whileTest[552]  2       0       1       558     12      558     16      after-branch@j++;
+whileTest[552]  3       0       1       555     12      557     13      if-statement@if (j > 0) {
+whileTest[552]  4       -1      0       560     5       560     5       pseudo-return@pseudo-return

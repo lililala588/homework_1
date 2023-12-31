@@ -1,0 +1,6 @@
+method[row]	node	parent	height	start.x	start.y	end.x	end.y	content
+remove[486]	0	-1	0	496	8	496	26	first-statement@rangeCheck(index);
+remove[486]	1	-1	0	505	8	505	35	after-branch@elementData[--size]=null;
+remove[486]	2	-1	0	502	8	504	39	if-statement@if (numMoved > 0) System.arraycopy(elementData,index + 1,elementData,index,numMoved);
+remove[486]	3	2	1	503	12	504	39	then-body@System.arraycopy(elementData,index + 1,elementData,index,numMoved);
+remove[486]	4	-1	0	507	8	507	24	return@return oldValue;
