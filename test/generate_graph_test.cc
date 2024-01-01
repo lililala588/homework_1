@@ -13,6 +13,12 @@ struct GenerateGraphTestParam{
   GraphType expectResult;
 };
 
+struct GenerateMultiGraphTestParam {
+  std::string fileName;
+  std::string functionName;
+  std::vector<GraphType> expectResult;
+};
+
 class GenerateGraphTest: 
     public TestWithParam<GenerateGraphTestParam>{
   protected:
@@ -24,6 +30,21 @@ class GenerateGraphTest:
     }
     GenerateGraphTestParam param_;
 };
+
+
+class GenerateMultiGraphTest : 
+    public TestWithParam<GenerateMultiGraphTestParam> 
+{
+  protected:
+    void SetUp() override {
+        param_ = GetParam();
+    }
+    void TearDown() override {
+        
+    }
+    GenerateMultiGraphTestParam param_;
+};
+
 
 TEST_P(GenerateGraphTest,Normal){
   const std::string filePrefix = "../../testData/";
@@ -41,6 +62,29 @@ TEST_P(GenerateGraphTest,Normal){
     }
   }
 }
+
+TEST_P(GenerateMultiGraphTest, Base) {
+  const std::string filePrefix = "../../testData/";
+  std::ifstream iFile(filePrefix+param_.fileName);
+  std::vector<GraphType> resultVec;
+  GenerateMultiGraph(iFile,param_.functionName,resultVec);
+  const std::vector<GraphType>& expectVec= param_.expectResult;
+  ASSERT_THAT(resultVec.size(), Eq(expectVec.size()));
+  for (int i = 0; i < resultVec.size(); i++) {
+    const GraphType& result = resultVec[i];
+    const GraphType& expect = expectVec[i];
+    ASSERT_THAT(result.MaxNodeId() ,Eq(expect.MaxNodeId()));
+    for(int i =0;i<result.MaxNodeId();i++){
+      for(int j =0;j<result.MaxNodeId();j++){
+        ASSERT_THAT(result.IsEdge(i,j),Eq(expect.IsEdge(i,j)))
+          << "(" << i <<","<<j <<")" << " "
+          <<"result "<< result.IsEdge(i,j) << "  "
+          <<"expect "<< expect.IsEdge(i,j) << std::endl;
+      }
+    }
+  }
+}
+
 
 static const GenerateGraphTestParam ifTestParam = {
   "if.txt", 
@@ -91,6 +135,15 @@ static const GenerateGraphTestParam whileTestNoBodyParam = {
             " 2 0"),
 };
 
+static const GenerateMultiGraphTestParam removeMultiTestParam = {
+    "remove.txt",
+    "remove",
+    {
+      remove486TestParam.expectResult, 
+      remove510TestParam.expectResult
+    },
+};
+
 
 INSTANTIATE_TEST_SUITE_P(ifTest,
                 GenerateGraphTest,
@@ -111,3 +164,7 @@ INSTANTIATE_TEST_SUITE_P(whileTest,
 INSTANTIATE_TEST_SUITE_P(whileTestNoBody,
                 GenerateGraphTest,
                 Values(whileTestNoBodyParam));
+
+INSTANTIATE_TEST_SUITE_P(removeMultiTest,
+                GenerateMultiGraphTest,
+                Values(removeMultiTestParam));
